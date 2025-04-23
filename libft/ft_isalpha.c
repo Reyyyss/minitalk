@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcarrasq <hcarrasq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 18:10:17 by hcarrasq          #+#    #+#             */
-/*   Updated: 2025/04/23 16:18:18 by hcarrasq         ###   ########.fr       */
+/*   Created: 2024/10/21 15:56:16 by hcarrasq          #+#    #+#             */
+/*   Updated: 2025/01/16 11:28:53 by hcarrasq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(int argc, char **argv)
-{
-	int	server_id;
+#include "libft.h"
 
-	server_id = atoi(argv[1]);
+int	ft_isalpha(int c)
+{
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+		return (1);
+	else
+		return (0);
 }

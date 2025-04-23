@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcarrasq <hcarrasq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 18:10:17 by hcarrasq          #+#    #+#             */
-/*   Updated: 2025/04/23 16:18:18 by hcarrasq         ###   ########.fr       */
+/*   Created: 2025/04/23 11:08:24 by hcarrasq          #+#    #+#             */
+/*   Updated: 2025/04/23 13:17:37 by hcarrasq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(int argc, char **argv)
-{
-	int	server_id;
+#ifndef MINITALK_H
+# define MINITALK_H
 
-	server_id = atoi(argv[1]);
-}
+#include "libft/libft.h"
+#include <signal.h>
+
+#endif

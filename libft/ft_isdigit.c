@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcarrasq <hcarrasq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 18:10:17 by hcarrasq          #+#    #+#             */
-/*   Updated: 2025/04/23 16:18:18 by hcarrasq         ###   ########.fr       */
+/*   Created: 2024/10/21 16:09:46 by hcarrasq          #+#    #+#             */
+/*   Updated: 2025/02/20 17:42:59 by hcarrasq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(int argc, char **argv)
-{
-	int	server_id;
+#include "libft.h"
 
-	server_id = atoi(argv[1]);
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
 }

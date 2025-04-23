@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcarrasq <hcarrasq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 18:10:17 by hcarrasq          #+#    #+#             */
-/*   Updated: 2025/04/23 16:18:18 by hcarrasq         ###   ########.fr       */
+/*   Created: 2024/11/28 16:12:51 by hcarrasq          #+#    #+#             */
+/*   Updated: 2025/02/03 17:18:22 by hcarrasq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(int argc, char **argv)
-{
-	int	server_id;
+#include "libft.h"
 
-	server_id = atoi(argv[1]);
+int	ft_putstr(char *str)
+{
+	int	count;
+
+	if (!str)
+		return (ft_putstr("(null)"));
+	count = 0;
+	while (*str)
+	{
+		write(1, &*str, 1);
+		count++;
+		str++;
+	}
+	return (count);
 }

@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcarrasq <hcarrasq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 18:10:17 by hcarrasq          #+#    #+#             */
-/*   Updated: 2025/04/23 16:18:18 by hcarrasq         ###   ########.fr       */
+/*   Created: 2024/10/30 15:33:48 by hcarrasq          #+#    #+#             */
+/*   Updated: 2024/11/18 10:52:22 by hcarrasq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(int argc, char **argv)
-{
-	int	server_id;
+#include "libft.h"
 
-	server_id = atoi(argv[1]);
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*temp;
+
+	if (count != 0 && (size > (size_t)(-1) / count))
+		return (NULL);
+	temp = malloc(count * size);
+	if (!temp)
+		return (NULL);
+	ft_bzero(temp, count * size);
+	return (temp);
 }

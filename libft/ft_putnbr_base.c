@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcarrasq <hcarrasq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/22 18:10:17 by hcarrasq          #+#    #+#             */
-/*   Updated: 2025/04/23 16:18:18 by hcarrasq         ###   ########.fr       */
+/*   Created: 2024/11/26 15:24:20 by hcarrasq          #+#    #+#             */
+/*   Updated: 2025/02/03 17:18:26 by hcarrasq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(int argc, char **argv)
-{
-	int	server_id;
+#include "libft.h"
 
-	server_id = atoi(argv[1]);
+int	ft_putnbr_base(long nbr, int lbase, char *base)
+{
+	int	count;
+	int	rmd;
+
+	count = 0;
+	if (nbr < 0)
+	{
+		count += write(1, "-", 1);
+		nbr = -nbr;
+	}
+	if (nbr >= lbase)
+		count += ft_putnbr_base(nbr / lbase, lbase, base);
+	rmd = (nbr % lbase);
+	write(1, &base[rmd], 1);
+	count++;
+	return (count);
 }

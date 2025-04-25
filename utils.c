@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcarrasq <hcarrasq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 17:35:28 by hcarrasq          #+#    #+#             */
-/*   Updated: 2025/04/25 14:04:38 by hcarrasq         ###   ########.fr       */
+/*   Created: 2025/04/25 14:35:59 by hcarrasq          #+#    #+#             */
+/*   Updated: 2025/04/25 14:41:21 by hcarrasq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minitalk.h"
 
-void	ft_putstr_fd(char *str, int fd)
+void	kill_checker(int pid, int sig)
 {
-	int	i;
-
-	i = 0;
-	if (!str || fd < 0)
-		return;
-	while (str[i])
+	if (kill(pid, sig) < 0)
 	{
-		write(fd, &str[i], 1);
-		i++;
+		perror("");
+		exit(1);
 	}
 }

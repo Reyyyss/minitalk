@@ -6,7 +6,7 @@
 /*   By: hcarrasq <hcarrasq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 18:15:40 by hcarrasq          #+#    #+#             */
-/*   Updated: 2025/04/24 15:34:09 by hcarrasq         ###   ########.fr       */
+/*   Updated: 2025/04/25 15:56:36 by hcarrasq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void message_receiver(int sig, int len)
 	static char		c;
 
 	if (bits < 1)
-		str = malloc(len);
+		str = ft_calloc(len + 1, sizeof(char));
 	if (sig == SIGUSR1)
 		c |= 1 << bits;
 	bits++;

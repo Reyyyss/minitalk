@@ -1,17 +1,20 @@
 NAME1 = server.a
 NAME2 = client.a
 
-SOURCES = ft_printf.c ft_prtptr.c ft_putchar.c ft_putnbr_base.c \
-			ft_putstr.c
+SOURCES_SERVER = server.c utils.c
+SOURCES_CLIENT = client.c utils.c
 
-OBJECTS = $(SOURCES:.c=.o)
+CLIENT_OBJ = $(SOURCES_CLIENT:.c=.o)
+SERVER_OBJ = $(SOURCES_SERVER:.c=.o)
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-all: $(NAME) 
-$(NAME): $(OBJECTS)
-	ar rcs $(NAME) $(OBJECTS)
+all: $(NAME1) $(NAME2)
+
+$(NAME1): $(SERVER_OBJ)
+	$(MAKE) -C ./libft
+	$(CC) $(CFLAGS) 
 
 clean:
 

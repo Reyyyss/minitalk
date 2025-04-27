@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcarrasq <hcarrasq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 18:15:40 by hcarrasq          #+#    #+#             */
-/*   Updated: 2025/04/25 15:56:36 by hcarrasq         ###   ########.fr       */
+/*   Updated: 2025/04/27 23:26:33 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,24 @@ void message_receiver(int sig, int len)
 			chars++;
 		}
 		else if (chars == len)
+		{
 			ft_printf("%s", str);
+			free(str);
+		}
 		c = 0;
 	}
 }
-void signal_handler(int sig, siginfo_t *client, void *ucontext)
+void signal_handler(int sig, siginfo_t *info, void *ucontext)
 {
 	static int		bit_len;
 	static int		bits;
 	static pid_t	client_id;
 
-	if (!client_id || client_id != client->si_pid)
+	if (!client_id || client_id != info->si_pid)
 	{
-		client_id = client->si_pid;
+		client_id = info->si_pid;
 		bits = 0;
+		bit_len = 0;
 	}
 	if (bits < 32)
 	{
@@ -54,10 +58,8 @@ void signal_handler(int sig, siginfo_t *client, void *ucontext)
 			bit_len |= 1;
 		bits++;
 	}
-	if (bits == 32)
-	{
+	else
 		message_receiver(sig, bit_len);
-	}
 }
 
 int	main(int argc, char **argv)
@@ -69,13 +71,15 @@ int	main(int argc, char **argv)
 
 	sa.sa_sigaction = signal_handler;
 	sa.sa_flags = SA_SIGINFO;
+	sa.sa_mask = 0; //block other signals during the handler.
 
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
 	{
-		ft_printf("Running...");
-		sleep(1);
+		ft_printf("Running...\n");
+		pause();
 	}
 	
 }
+

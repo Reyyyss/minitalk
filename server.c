@@ -3,22 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: henrique-reis <henrique-reis@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 18:15:40 by hcarrasq          #+#    #+#             */
-/*   Updated: 2025/04/27 23:26:33 by marvin           ###   ########.fr       */
+/*   Updated: 2025/05/04 10:05:37 by henrique-re      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
+void	send_ack(pid_t client_pid)
+{
+	if (kill(client_pid, SIGUSR1) == -1)
+		ft_printf("Error sending acknowledgement\n");
+}		
+
 void message_receiver(int sig, int len)
 {
-	int	chars;
+	static int		chars;
 	static int		bits;
 	static char		*str;
 	static char		c;
 
+	chars = 0;
 	if (bits < 1)
 		str = ft_calloc(len + 1, sizeof(char));
 	if (sig == SIGUSR1)
@@ -51,35 +58,38 @@ void signal_handler(int sig, siginfo_t *info, void *ucontext)
 		bits = 0;
 		bit_len = 0;
 	}
+	(void)ucontext;
 	if (bits < 32)
 	{
 		bit_len = bit_len << 1;
 		if (sig == SIGUSR1)
 			bit_len |= 1;
 		bits++;
+		if (bits == 32)
+			send_ack(client_id);
 	}
 	else
 		message_receiver(sig, bit_len);
 }
 
-int	main(int argc, char **argv)
+int	main(void)
 {
 	struct sigaction	sa;
 
-	ft_memset(sa, 0, sizeof(sa));
-	ft_printf("Server ID:%d", pid());
+	ft_printf("Server ID:%d\n", getpid());
 
 	sa.sa_sigaction = signal_handler;
 	sa.sa_flags = SA_SIGINFO;
-	sa.sa_mask = 0; //block other signals during the handler.
+	sigemptyset(&sa.sa_mask);
 
-	sigaction(SIGUSR1, &sa, NULL);
-	sigaction(SIGUSR2, &sa, NULL);
-	while (1)
+	if (sigaction(SIGUSR1, &sa, NULL) == -1 ||
+		sigaction(SIGUSR2, &sa, NULL) == -1)
 	{
-		ft_printf("Running...\n");
-		pause();
+		ft_printf("Error setting up signal handles\n");
+		return (1);
 	}
-	
+	while (1)
+		pause();
+	return (0);
 }
 

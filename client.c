@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: henrique-reis <henrique-reis@student.42    +#+  +:+       +#+        */
+/*   By: hcarrasq <hcarrasq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 18:10:17 by hcarrasq          #+#    #+#             */
-/*   Updated: 2025/05/04 10:03:18 by henrique-re      ###   ########.fr       */
+/*   Updated: 2025/05/05 15:55:52 by hcarrasq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	phrase_lenght(int pid, int lenght)
 	{
 		g_global_ack = 0;
 		timeout = 1000;
-		holder = ((lenght >> bit) & 1);
+		holder = ((lenght >> (31 - bit) & 1));
 		if (holder == 1)
 			kill_checker(pid, SIGUSR1);
 		else
@@ -57,7 +57,7 @@ void	message_convertor(int pid, char c)
 	{
 		g_global_ack = 0;
 		timeout = 1000;
-		if ((c >> bit) & 1)
+		if ((c >> (7 - bit)) & 1)
 			kill_checker(pid, SIGUSR1);
 		else
 			kill_checker(pid, SIGUSR2);
@@ -86,6 +86,8 @@ int	main(int argc, char **argv)
 	sa.sa_handler = &action_handler;
 	sa.sa_flags = 0;
 	sigemptyset(&sa.sa_mask);
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
 	server_id = ft_atoi(argv[1]);
 	if (server_id <= 0)
 	{
@@ -94,7 +96,7 @@ int	main(int argc, char **argv)
 	}
 	phrase_lenght(server_id, lenght);
 	while (argv[2][++i])
-		message_convertor(ft_atoi(argv[1]), argv[2][i]);
-	message_convertor('\0', server_id);
+		message_convertor(server_id, argv[2][i]);
+	message_convertor(server_id, '\0');
 	ft_printf("Message sended\n");
 }

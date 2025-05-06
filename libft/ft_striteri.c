@@ -6,7 +6,7 @@
 /*   By: hcarrasq <hcarrasq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 16:46:05 by hcarrasq          #+#    #+#             */
-/*   Updated: 2025/03/12 12:14:47 by hcarrasq         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:34:26 by hcarrasq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 
 	i = 0;
 	if (!s)
-		return ;
+		return;
 	while (s && s[i])
 	{
 		f(i, &s[i]);

@@ -6,7 +6,7 @@
 /*   By: hcarrasq <hcarrasq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:16:25 by hcarrasq          #+#    #+#             */
-/*   Updated: 2025/03/12 12:13:54 by hcarrasq         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:34:36 by hcarrasq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	count_words(const char *phrase, char c, char **newstr)
 	return (count);
 }
 
+
 char	**ft_split(char const *s, char c)
 {
 	char		**newstr;
@@ -63,7 +64,7 @@ char	**ft_split(char const *s, char c)
 {
 	int i = 0;
 	
-	char **str = ft_split("eu gosto mm maias", ' ');
+	char **str = ft_split("eu gosto mm de mulheres sexys que gostam de ler os maias", ' ');
 	while (str[i])
 	{
 		printf("%s\n", str[i]);

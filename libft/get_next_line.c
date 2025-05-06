@@ -6,7 +6,7 @@
 /*   By: hcarrasq <hcarrasq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 11:59:54 by hcarrasq          #+#    #+#             */
-/*   Updated: 2025/03/12 12:14:09 by hcarrasq         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:50:48 by hcarrasq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*get_next_line(int fd)
 	str = NULL;
 	while (buf[0] || read(fd, buf, BUFFER_SIZE) > 0)
 	{
-		str = ft_strjoin(buf, str);
+		str = ft_strjoinbuf(buf, str);
 		if (!str)
 			return (NULL);
 		buf_cleaner(buf);

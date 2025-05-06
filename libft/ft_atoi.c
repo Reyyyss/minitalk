@@ -6,7 +6,7 @@
 /*   By: hcarrasq <hcarrasq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 14:19:55 by hcarrasq          #+#    #+#             */
-/*   Updated: 2025/03/12 12:13:00 by hcarrasq         ###   ########.fr       */
+/*   Updated: 2025/02/03 17:37:07 by hcarrasq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 long	ft_atoi(const char *nptr)
 {
-	int		count;
-	int		i;
+	int	count;
+	int	i;
 	long	num;
 	long	max;
 
@@ -33,7 +33,7 @@ long	ft_atoi(const char *nptr)
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
 		if (num > max)
-			break ;
+			break;
 		num = num * 10 + (nptr[i] - 48);
 		i++;
 	}

@@ -6,13 +6,13 @@
 /*   By: hcarrasq <hcarrasq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 18:10:17 by hcarrasq          #+#    #+#             */
-/*   Updated: 2025/05/05 15:55:52 by hcarrasq         ###   ########.fr       */
+/*   Updated: 2025/05/06 17:33:25 by hcarrasq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int 		g_global_ack = 0;
+int		g_global_ack = 0;
 
 void	action_handler(int signal)
 {
@@ -24,7 +24,7 @@ void	phrase_lenght(int pid, int lenght)
 {
 	int	bit;
 	int	holder;
-	int timeout;
+	int	timeout;
 
 	bit = 0;
 	while (bit < 32)
@@ -36,13 +36,13 @@ void	phrase_lenght(int pid, int lenght)
 			kill_checker(pid, SIGUSR1);
 		else
 			kill_checker(pid, SIGUSR2);
-	while (g_global_ack == 0 && timeout-- > 0) 
-		usleep(50);
-	if (timeout == 0) 
-	{
-		ft_printf("Timeout waiting for acknowledgment\n");
-		exit(1);
-	}
+		while (g_global_ack == 0 && timeout-- > 0)
+			usleep(50);
+		if (timeout == 0)
+		{
+			ft_printf("Timeout waiting for acknowledgment\n");
+			exit(1);
+		}
 		bit++;
 	}
 }
@@ -50,7 +50,7 @@ void	phrase_lenght(int pid, int lenght)
 void	message_convertor(int pid, char c)
 {
 	int	bit;
-	int timeout;
+	int	timeout;
 
 	bit = 0;
 	while (bit < 8)
@@ -63,7 +63,7 @@ void	message_convertor(int pid, char c)
 			kill_checker(pid, SIGUSR2);
 		while (g_global_ack == 0 && timeout-- > 0)
 			usleep(50);
-		if (timeout == 0) 
+		if (timeout == 0)
 		{
 			ft_printf("Timeout waiting for acknowledgment\n");
 			exit(1);
@@ -82,7 +82,7 @@ int	main(int argc, char **argv)
 	i = -1;
 	lenght = ft_strlen(argv[2]);
 	if (argc != 3)
-		return(ft_putstr_fd("Usage: ./client <server_pid> <message>", 2), 1);
+		return (ft_putstr_fd("Usage: ./client <server_pid> <message>", 2), 1);
 	sa.sa_handler = &action_handler;
 	sa.sa_flags = 0;
 	sigemptyset(&sa.sa_mask);

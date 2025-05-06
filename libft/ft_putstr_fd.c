@@ -6,7 +6,7 @@
 /*   By: hcarrasq <hcarrasq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:35:28 by hcarrasq          #+#    #+#             */
-/*   Updated: 2025/04/25 14:04:38 by hcarrasq         ###   ########.fr       */
+/*   Updated: 2024/11/12 10:25:57 by hcarrasq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	ft_putstr_fd(char *str, int fd)
 	int	i;
 
 	i = 0;
-	if (!str || fd < 0)
-		return;
 	while (str[i])
 	{
 		write(fd, &str[i], 1);

@@ -6,7 +6,7 @@
 /*   By: hcarrasq <hcarrasq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 13:15:17 by hcarrasq          #+#    #+#             */
-/*   Updated: 2025/03/12 12:16:13 by hcarrasq         ###   ########.fr       */
+/*   Updated: 2025/03/26 15:41:19 by hcarrasq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define UHEX "0123456789ABCDEF"
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 2
+# define BUFFER_SIZE 1
 # endif
 
 # include <stdlib.h>
@@ -79,12 +79,12 @@ void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
-int		ft_prtptr(unsigned long long n, char *base, int flag);
-int		ft_putchar(int c);
-int		ft_putnbr_base(long nbr, int lbase, char *base);
-int		ft_putstr(char *str);
-int		ft_checkpercentage(const char *str, va_list	args);
-int		ft_printf(const char *str, ...);
+int	ft_prtptr(unsigned long long n, char *base, int flag);
+int	ft_putchar(int c);
+int	ft_putnbr_base(long nbr, int lbase, char *base);
+int	ft_putstr(char *str);
+int	ft_checkpercentage(const char *str, va_list	args);
+int	ft_printf(const char *str, ...);
 char	*get_next_line(int fd);
 size_t	ft_strlenbuf(char *str);
 char	*ft_strjoinbuf(char *buf, char *str);
